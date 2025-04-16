@@ -1,3 +1,4 @@
+import 'package:delivery/Ui/_core/widgets/appbar.dart';
 import 'package:delivery/Ui/home/widgets/category_widget.dart';
 import 'package:delivery/Ui/home/widgets/restaurant_widget.dart';
 import 'package:delivery/data/categories_data.dart';
@@ -14,9 +15,7 @@ class HomeScreen extends StatelessWidget {
     RestaurantData restaurantData = Provider.of<RestaurantData>(context);
     return Scaffold(
       drawer: Drawer(),
-      appBar: AppBar(
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.menu))],
-      ),
+      appBar: getAppBar(context: context),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
