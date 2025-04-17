@@ -22,9 +22,12 @@ class RestaurantWidget extends StatelessWidget {
       child: Row(
         spacing: 12,
         children: [
-          Image.asset(
-            'assets/${restaurant.imagePath}',
-            width: 80,
+          Hero(
+            tag: restaurant.id,
+            child: Image.asset(
+              'assets/${restaurant.imagePath}',
+              width: 80,
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

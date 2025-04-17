@@ -12,45 +12,86 @@ class OrderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     BagProvider bagProvider = Provider.of<BagProvider>(context);
     return Container(
-      height: 100,
       decoration: BoxDecoration(
         color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(15),
       ),
-      child: ListTile(
-        leading: Image.asset("assets/dishes/default.png", fit: BoxFit.cover,),
-        title: Text(
-          dish.name,
-          style: TextStyle(
-            fontSize: 20,
-            color: AppColors.highlightText,
-          ),
-        ),
-        subtitle: Text("R\$${dish.price.toStringAsFixed(2)}"),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              onPressed: () {
-                bagProvider.removeDish(dish);
-              },
-              icon: Icon(Icons.remove),
-            ),
-            Text(
-              bagProvider.getMapByAmount()[dish].toString(),
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(15),
+                  topLeft: Radius.circular(15),
+                ),
+                child: Image.asset(
+                  'assets/dishes/default.png',
+                  width: 120,
+                  height: 110,
+                  fit: BoxFit.cover,
+                ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  spacing: 8,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      dish.name,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: AppColors.highlightText,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      'R\$${dish.price.toStringAsFixed(2)}',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: AppColors.textCardColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 5.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    bagProvider.addAllDishes([dish]);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_drop_down_circle_rounded,
+                    color: AppColors.mainColor,
+                    size: 30,
+                  ),
+                ),
+                Text(
+                  bagProvider.getMapByAmount()[dish].toString(),
+                  style: TextStyle(color: AppColors.highlightText),
+                ),
+                IconButton(
+                  onPressed: () {
+                    bagProvider.removeDish(dish);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_drop_down_circle_rounded,
+                    color: AppColors.mainColor,
+                    size: 30,
+                  ),
+                ),
+              ],
             ),
-            IconButton(
-              onPressed: () {
-                bagProvider.addAllDishes([dish]);
-              },
-              icon: Icon(Icons.add),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

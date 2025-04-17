@@ -1,9 +1,9 @@
-import 'package:delivery/Ui/_core/bag_provider.dart';
+import 'package:delivery/Ui/_core/app_colors.dart';
 import 'package:delivery/Ui/_core/widgets/appbar.dart';
+import 'package:delivery/Ui/restaurant/widgets/food_widget.dart';
 import 'package:delivery/model/dish.dart';
 import 'package:delivery/model/restaurant.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class RestaurantScreen extends StatelessWidget {
   final Restaurant restaurant;
@@ -13,32 +13,41 @@ class RestaurantScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getAppBar(context: context, title: restaurant.name),
-      body: Center(
-        child: Column(
-          spacing: 12,
-          children: [
-            Image.asset(
-              'assets/${restaurant.imagePath}',
-              width: 128,
-            ),
-            Text(
-              'Mais pedidos',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Column(
-              children: List.generate(restaurant.dishes.length, (index){
-                Dish dish = restaurant.dishes[index];
-                return ListTile(
-                  leading: Image.asset("assets/dishes/default.png", width: 48),
-                  title: Text(dish.name),
-                  subtitle: Text("R\$${dish.price.toStringAsFixed(2)}"),
-                  trailing: IconButton(onPressed: (){
-                    context.read<BagProvider>().addAllDishes([dish]);
-                  }, icon: Icon(Icons.add),),
-                );
-              }),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            spacing: 12,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Hero(
+                  tag: restaurant.id,
+                  child: Image.asset(
+                    'assets/${restaurant.imagePath}',
+                    width: 128,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Text(
+                  'Mais pedidos',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.highlightText,
+                  ),
+                ),
+              ),
+              Column(
+                children: List.generate(restaurant.dishes.length, (index) {
+                  Dish dish = restaurant.dishes[index];
+                  return FoodWidget(dish: dish, restaurant: restaurant,);
+                }),
+              ),
+            ],
+          ),
         ),
       ),
     );

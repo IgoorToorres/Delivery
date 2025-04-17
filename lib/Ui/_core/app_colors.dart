@@ -6,4 +6,5 @@ abstract class AppColors {
   static const Color lightBackgroundColor = Color(0xFF343541);
   static const Color highlightText = Color(0xFFFFE6C7);
   static const Color cardColor = Color(0xFF343541);
+  static const Color textCardColor = Color(0xFFDBD7DF);
 }

@@ -1,5 +1,6 @@
 import 'package:delivery/Ui/_core/widgets/appbar.dart';
 import 'package:delivery/Ui/home/widgets/category_widget.dart';
+import 'package:delivery/Ui/home/widgets/filter_input_widget.dart';
 import 'package:delivery/Ui/home/widgets/restaurant_widget.dart';
 import 'package:delivery/data/categories_data.dart';
 import 'package:delivery/data/restaurant_data.dart';
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Text('Boas vindas!'),
-              TextFormField(),
+              FilterInputWidget(),
               Text('Escolha por categoria'),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
