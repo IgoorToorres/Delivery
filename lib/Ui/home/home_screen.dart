@@ -1,5 +1,6 @@
 import 'package:delivery/Ui/_core/widgets/appbar.dart';
 import 'package:delivery/Ui/home/widgets/category_widget.dart';
+import 'package:delivery/Ui/home/widgets/custom_drawer_widget.dart';
 import 'package:delivery/Ui/home/widgets/filter_input_widget.dart';
 import 'package:delivery/Ui/home/widgets/restaurant_widget.dart';
 import 'package:delivery/data/categories_data.dart';
@@ -15,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     RestaurantData restaurantData = Provider.of<RestaurantData>(context);
     return Scaffold(
-      drawer: Drawer(),
+      drawer: CustomDrawerWidget(),
       appBar: getAppBar(context: context),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24),
